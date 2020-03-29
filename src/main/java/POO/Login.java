@@ -1,7 +1,7 @@
 package POO;
 
 public class Login {
-    public String password = "";
+    public String password = "Cognox2019";
     public String user = "";
 
    public User setUsuario(String user){

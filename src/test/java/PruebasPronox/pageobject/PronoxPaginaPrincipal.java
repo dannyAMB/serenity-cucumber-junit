@@ -52,6 +52,76 @@ public class PronoxPaginaPrincipal extends PageObject {
     }
 
 
+    /////////////////////
+
+    public void ClickEnSeguridad() {
+
+        Seguridad4.click();
+
+    }
+
+    public void ClickEnUsuarios() {
+        usuarios.click();
+    }
+
+
+    /////////////////////
+
+
+    /////////////////////
+
+
+    public void SelectCreaUsuario() {
+
+        ButtonNuevoUsuario.click();
+        //tr[4]//td[1]
+    }
+
+
+    public void llenarFormulario(String nombre, String email, String estado, String rol, String Cargo) {
+        System.out.println(nombre +" "+ email +" "+ estado +" "+rol +" "+ Cargo);
+
+        //formularo crear usuario
+
+        String[] elements = {"name", "email", "charge"};
+        String[] Text = {nombre, email, Cargo};
+
+        find(By.xpath("//input[@id='" + elements[0] + "']")).click();
+        withTimeoutOf(Duration.ofSeconds(10)).find(By.xpath("//input[@id='" + elements[0] + "']")).type(Text[0]);
+
+        withTimeoutOf(Duration.ofSeconds(5)).find(By.xpath("//input[@id='" + elements[1] + "']")).type(Text[1]);
+
+
+
+
+        withTimeoutOf(Duration.ofSeconds(5)).find(By.xpath("//div[@id='roles']")).click();
+
+            try {
+
+
+                withTimeoutOf(Duration.ofSeconds(5)).find(By.xpath("//li[contains(text(),'" + rol + "')]")).click();
+                System.out.println("clickeó " + rol + "");
+            } catch (Exception e) {
+                System.out.println("excepción  " + rol + ":" + e.getCause());
+            }
+
+        find(By.xpath("//input[@id='" + elements[2] + "']")).type(Text[2]);
+
+
+
+
+
+
+    //Botton status
+
+            if(estado.equals("inactivo"))
+
+    {
+
+        withTimeoutOf(Duration.ofSeconds(10)).find(By.xpath("//button[@id='status']")).click();
+
+
+    }
 
 }
 
@@ -59,10 +129,35 @@ public class PronoxPaginaPrincipal extends PageObject {
 
 
 
+        public void ClickGuardar() {
+          //Botton Guardar
+               withTimeoutOf(Duration.ofSeconds(20)).find(By.xpath("//button[@class='ant-btn custom-full-width ant-btn-primary ant-btn-lg']")).click();
+            //cerramos el navedor
+
+       }
+        public void ClickCancelar(){
+           //Boton cancelar
+
+            withTimeoutOf(Duration.ofSeconds(10)).find(By.xpath("//button[@class='ant-btn custom-full-width ant-btn-lg']")).click();
+
+        }
+
+        public void cerrar(){
+            //div[@class='custom-header-user ant-dropdown-trigger']
+            //li[@class='ant-menu-item ant-menu-item-active']
+            // i[contains(@class,'anticon anticon-logout')]
+
+            //button[contains(@class,'ant-btn ant-btn-primary')]
+
+            withTimeoutOf(Duration.ofSeconds(9)).find(By.xpath("//div[@class='custom-header-user ant-dropdown-trigger']")).click();
+            find(By.xpath("//div[@class='custom-header-user ant-dropdown-trigger']")).click();
+          findBy("// i[contains(@class,'anticon anticon-logout')]").click();
 
 
+        }
 
 
+}
 
 
 
